@@ -1,26 +1,40 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+.backdrop{
+  @apply bg-linear-to-bl from-purple-700 to-fuchsia-400;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  .text-outline-2 {
+    -webkit-text-stroke: 2px black;
+    text-stroke: 2px black; /* For broader compatibility */
+  }
+  .text-outline-4-red {
+    -webkit-text-stroke: 4px red;
+    text-stroke: 4px red;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.form{
+    @apply flex flex-col place-self-center gap-10 border-15 border-double border-purple-700 px-25 py-10 rounded-3xl bg-gray-300/65;
+}
+
+.form input{
+    @apply border-2 rounded-3xl px-2 bg-white;
+}
+
+.submitButton{
+    @apply border-2 rounded-full bg-purple-400 hover:bg-purple-600 active:bg-purple-800;
+}
+
+.postView{
+  @apply border-3 p-5 items-center bg-white
+}
+
+.navButton{
+  @apply text-2xl border-b-5 border-purple-600 hover:bg-purple-600 active:bg-purple-800 px-10 rounded-2xl;
+}
+
+.logoutButton{
+  @apply mr-auto cursor-pointer border-2 px-5 rounded-full
 }
