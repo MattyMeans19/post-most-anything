@@ -15,7 +15,7 @@ export default function Post(props: PostProps){
     }
 
     return(
-        <div className="grow flex flex-col gap-5 justify-around overflow-y-scroll">
+        <div className="max-h-[98vh] flex flex-col gap-5 justify-around p-5">
             {posts.map((post) => (
                 <div key={post.postId} className="postView grow">
                     <h1 className="text-center">{post.title}</h1>
