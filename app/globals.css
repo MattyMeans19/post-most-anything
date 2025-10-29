@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 .backdrop{
-  @apply bg-linear-to-bl from-purple-700 to-fuchsia-400;
+  @apply bg-linear-to-bl from-gray-300 to-gray-400;
 }
 
 @layer base {
@@ -37,4 +37,16 @@
 
 .logoutButton{
   @apply mr-auto cursor-pointer border-2 px-5 rounded-full
+}
+
+.registration{
+  @apply grid grid-cols-4 gap-y-15 gap-x-5 mx-40 p-35 border-20 border-double rounded-2xl border-purple-700 bg-white;
+}
+
+.registration input{
+  @apply border-3 border-black/60 w-full; 
+}
+
+.registration label{
+  @apply text-2xl text-end underline w-full;
 }
