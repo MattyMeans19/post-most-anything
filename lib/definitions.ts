@@ -3,6 +3,24 @@ export type User ={
     lName: string,
     userName: string,
     password: string,
-    dob: Date,
-    underAge: boolean
+    dob: Date
+    userID: number
+}
+
+export type Post ={
+    title: string,
+    image: string,
+    content: string,
+    creator: string,
+    date: Date,
+    postId: number, 
+    upvotes: number, 
+    comments: number
+}
+
+export type Comment ={
+    postId: number,
+    content: string,
+    creator: string,
+    date: Date
 }

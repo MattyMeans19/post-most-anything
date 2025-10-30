@@ -1,6 +1,9 @@
 import { post } from "@/dummyData/posts";
 import Image from "next/image";
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+
+
 
 export default async function PostDetails({params}: {params: {postSlug: number}}){
     const {postSlug} = await params;

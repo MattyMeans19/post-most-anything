@@ -1,6 +1,11 @@
+import type { Metadata } from "next";
 import Post from "@/components/post-display";
 import UserPanel from "@/components/user-panel";
 
+export const metadata: Metadata = {
+  title: "PMA- Home",
+  description: "The everything goes blog site!",
+};
 
 export default function BlogHome(){
     const username: string = "dorg";

@@ -1,3 +1,9 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "PMA- Register",
+  description: "The everything goes blog site!",
+};
 
 export default function Register(){
     return(

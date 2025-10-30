@@ -1,6 +1,11 @@
+import type { Metadata } from "next";
 import Post from "@/components/post-display";
 import Sidebar from "@/components/filter-sidebar";
 
+export const metadata: Metadata = {
+  title: "PMA- Posts",
+  description: "The everything goes blog site!",
+};
 
 export default function Posts(){
     return(
