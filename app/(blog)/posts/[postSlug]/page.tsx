@@ -1,27 +1,26 @@
-import { post } from "@/dummyData/posts";
-import Image from "next/image";
+import { GetPost } from "@/lib/data";
 import { notFound } from "next/navigation";
-import type { Metadata } from "next";
 
 
 
 export default async function PostDetails({params}: {params: {postSlug: number}}){
     const {postSlug} = await params;
-    const posts = post.filter(post => post.postId == postSlug)
 
-    let currentPost;
+    const currentPost = await GetPost(postSlug);
 
-    if(posts.length === 0){
+    if(currentPost === undefined){
         notFound();
-    } else{
-        currentPost = posts[0];
+    } else if(typeof currentPost != "string"){
+        return(
+            <div>
+                <h1>{currentPost.title}</h1>
+                <h2>By: {currentPost.creator}</h2>
+                <p>{currentPost.postdate.toLocaleDateString()}</p>
+                <p>{currentPost.post}</p>
+                <h3>Upvotes: {currentPost.upvotes}</h3>
+                <h3>Replies: {currentPost.replies}</h3>
+            </div>
+        )  
     }
-
-    return(
-        <div>
-            <h1>{currentPost.title}</h1>
-            <Image src={currentPost.img} alt="Post Image"/>
-            <p>{currentPost.content}</p>
-        </div>
-    )
+    
 }

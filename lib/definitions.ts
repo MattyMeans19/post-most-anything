@@ -8,14 +8,13 @@ export type User ={
 }
 
 export type Post ={
+    postid: number,
     title: string,
-    image: string,
-    content: string,
+    post: string,
     creator: string,
-    date: Date,
-    postId: number, 
+    postdate: Date, 
     upvotes: number, 
-    comments: number
+    replies: number
 }
 
 export type Comment ={

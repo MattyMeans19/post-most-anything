@@ -1,32 +1,31 @@
-import {post} from "@/dummyData/posts";
 import Link from "next/link";
+import { Post } from "@/lib/definitions";
 
-interface PostProps {
-    creator: string
+
+interface PostData {
+    data: Post[] | string,
 }
 
-export default function Post(props: PostProps){
-    const currentCreator = props.creator;
-    let posts;
+export default async function Display(array: PostData){
+    const posts: Post[] | string = array.data;
 
-    if(currentCreator != ""){
-        posts = post.filter(post => post.creator === props.creator);
-    } else{
-        posts = post;
-    }
-
-    return(
+    if(typeof posts === "string"){
+        return <p>{posts}</p>
+    }else {
+         return(
         <div className="max-h-[98vh] flex flex-col gap-5 justify-around p-5">
             {posts.map((post) => (
-                <Link href={`/posts/${post.postId}`} key={post.postId} className="postView grow">
-                    <h1 className="text-center">{post.title}</h1>
-                    <img src={post.img.src} alt="post image" className="place-self-center"/>
-                    <p>{post.content}</p>
-                    <h2>Created by: {post.creator}</h2>
-                    <h2>Posted on: {post.postDate.toLocaleDateString()}</h2>
+                <Link href={`/posts/${post.postid}`} key={post.postid} className="postView grow">
+                    <h1 className="text-center text-4xl">{post.title}</h1>
+                    <h2 className="text-center text-2xl">Created by: {post.creator}</h2>
+                    <p className="text-3xl">{post.post}</p>
+                    <h2 className="place-self-end">Posted on: {post.postdate.toLocaleDateString()}</h2>
                 </Link>
                 
             ))}
         </div>
     )
+    }
+
+   
 }
