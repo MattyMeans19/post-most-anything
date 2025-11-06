@@ -17,9 +17,8 @@ export async function GetAllPosts(){
 
 export async function GetPost(postSlug: number){
     try{
-        const postRequest = await pool.query('SELECT * FROM posts WHERE postid = $1', [postSlug])
-        let postResponse = postRequest.rows
-        console.log(postResponse[0]);
+        const postRequest = await pool.query('SELECT * FROM posts WHERE postid = $1', [postSlug]);
+        let postResponse = postRequest.rows;
         return postResponse[0] as Post;
     } catch (error) {
         console.error("Error fetching post: ", error);
@@ -30,8 +29,8 @@ export async function GetPost(postSlug: number){
 
 export async function GetUserPosts(userName: string){
     try{
-        const postRequest = await pool.query('SELECT * FROM posts WHERE creator = $1', [userName])
-        let postResponse = postRequest.rows
+        const postRequest = await pool.query('SELECT * FROM posts WHERE creator = $1', [userName]);
+        let postResponse = postRequest.rows;
         return postResponse as Post[];
     } catch (error) {
         console.error("Error fetching post: ", error);

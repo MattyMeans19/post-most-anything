@@ -23,3 +23,18 @@ export type Comment ={
     creator: string,
     date: Date
 }
+
+export type FormState =
+  | {
+      errors?: {
+        username?: string[]
+        password?: string[]
+      }
+      message?: string
+    }
+  | undefined
+
+export type SessionPayload = {
+    username: string, 
+    expiresAt: Date
+  }

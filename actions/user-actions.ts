@@ -1,21 +1,36 @@
+'use server';
+
 import { redirect } from "next/navigation";
 import pool from "@/lib/db";
+import { FormState } from "@/lib/definitions";
+import { isRedirectError } from "next/dist/client/components/redirect-error";
+import { createSession, deleteSession } from "@/lib/session";
 
-export async function Login(formData: FormData){
+export async function Login(formState: FormState, formData: FormData){
     let userName = formData.get("username") as string;
     let password = formData.get('password') as string;
 
     try{
-        const loginRequest = await pool.query("SELECT username, password FROM users WHERE username = $1", [userName])
-        const loginResponse = loginRequest.rows[0];
-
-        if (password === loginResponse.password){
+        const loginRequest = await pool.query('SELECT password FROM users WHERE username = $1', [userName])
+        let loginResponse = loginRequest.rows;
+        
+        if(password === loginResponse[0].password){
+            await createSession(userName);
             redirect("/home");
         } else {
-            return {message: "Invalid password"}
+            return {message: 'Invalid Login, try again!'};
+
         }
     } catch (error){
-
+        if (isRedirectError(error)) {
+            throw error; // Re-throw the redirect error for Next.js to handle
+        }
+        return {message: "There was an error validating login, please try again!"};
     }
+    
+}
 
+export async function Logout(){
+    await deleteSession();
+    redirect("/login")
 }

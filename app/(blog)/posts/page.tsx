@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 
 
 export default async function Posts(){
+  
 
   let postsArray = await GetAllPosts()
 
