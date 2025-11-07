@@ -1,10 +1,13 @@
-export type User ={
-    fName: string,
-    lName: string,
-    userName: string,
+export type UserBasicInfo ={
+  fname: string,
+  lname: string,
+  username: string,
+}
+
+export interface UserInfo extends UserBasicInfo{
     password: string,
-    dob: Date
-    userID: number
+    dob: Date,
+    userid: number
 }
 
 export type Post ={
