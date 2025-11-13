@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 .backdrop{
-  @apply bg-linear-to-bl from-gray-300 to-gray-400;
+  @apply bg-linear-to-bl from-gray-500/35 to-purple-800/65;
 }
 
 @layer base {
