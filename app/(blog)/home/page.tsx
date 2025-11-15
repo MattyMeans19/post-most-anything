@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Display from "@/components/post-display";
 import UserPanel from "@/components/user-panel";
 import { GetUserPosts } from "@/lib/data";
+import "./home.css"
 
 export const metadata: Metadata = {
   title: "PMA- Home",
@@ -13,10 +14,10 @@ export default async function BlogHome(){
 
 
     return(
-        <div className="min-h-[84vh] flex flex-wrap justify-between backdrop py-10">
+        <div className="home-container backdrop">
             <UserPanel/>
-            <div className="h-[76vh] basis-1/2 border-5 border-double mx-5 pl-10 overflow-y-scroll bg-fuchsia-500/45 inset-20 inset-shadow-xs inset-shadow-black">
-                <h1 className="text-4xl text-center mt-20">Your Posts</h1>
+            <div className="prevPosts">
+                <h1>Your Posts</h1>
                 <Display data={userPosts}/>
             </div>
         </div>

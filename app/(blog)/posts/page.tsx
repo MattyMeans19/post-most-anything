@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Display from "@/components/post-display";
 import Sidebar from "@/components/filter-sidebar";
 import { GetAllPosts } from "@/lib/data";
+import "./posts.css";
 
 export const metadata: Metadata = {
   title: "PMA- Posts",
@@ -15,9 +16,9 @@ export default async function Posts(){
   let postsArray = await GetAllPosts()
 
     return(
-      <div className="backdrop h-[84vh] flex flex-wrap p-5 overflow-clip">
+      <div className="backdrop posts-page">
         <Sidebar />
-        <div className="basis-4/5 max-h-[82vh] overflow-y-scroll">
+        <div className="posts-array">
           <Display data={postsArray}/>
         </div>
         
