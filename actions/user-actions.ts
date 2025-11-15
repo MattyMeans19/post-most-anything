@@ -54,3 +54,38 @@ export async function getUser(){
         return message as string;
     }
 }
+
+export async function CreateUser(formState: FormState, formData: FormData){
+    let fname = formData.get("fName") as string;
+    let lname = formData.get("lName") as string;
+    let username = formData.get("username") as string;
+    let email = formData.get("email") as string;
+    let password = formData.get("password") as string;
+    let dob = formData.get("dob");
+    
+    const specialCharacters = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+    let validatePassword = specialCharacters.test(password);
+
+    if(!email?.includes("@") || validatePassword){
+        return {message : "Make sure email is valid and password contains at least one special character!"}
+    }
+
+    try{
+        const checkUser = await pool.query('SELECT * users WHERE username = $1', [username]);
+        const checkResponse = checkUser.rows;
+
+        if(checkResponse.length > 0){
+            return {message: "User Already Exists!"}
+        }
+        
+        await pool.query('INSERT INTO users (fname, lname, username, password, dob, email) VALUES ($1, $2, $3, $4, $5, $6)', [fname, lname, username, password, dob, email]);
+        await createSession(username);
+        redirect("/home");
+    } catch(error){
+       if (isRedirectError(error)) {
+            throw error; // Re-throw the redirect error for Next.js to handle
+        }
+        return {message: "Something went wrong, please try again!"}; 
+    }
+    
+}

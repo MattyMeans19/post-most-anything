@@ -4,7 +4,7 @@ import { useActionState } from "react";
 
 export default function LoginForm(){
 
-    const [formState, formAction] = useActionState(Login, undefined)
+    const [formState, formAction] = useActionState(Login, undefined);
     
     return(
         <div className="h-[90vh] backdrop content-center">
