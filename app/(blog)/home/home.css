@@ -21,11 +21,14 @@
     .nametag h1{
         @apply text-5xl underline mb-15;
     }
+    .nametag h2{
+        @apply text-3xl my-10;
+    }
 }
 
 @media (min-width: 768) and (max-width: 991px){
     .home-container{
-        @apply w-screen flex flex-col gap-10 p-15;
+        @apply h-screen w-screen flex flex-col gap-10 p-15;
     }
     .prevPosts{
         @apply border-5 border-double px-10 overflow-y-scroll bg-fuchsia-500/45 inset-20 inset-shadow-xs inset-shadow-black;
@@ -50,7 +53,7 @@
 
 @media screen and (max-width: 767px){
     .home-container{
-        @apply w-screen flex flex-col gap-10 p-5;
+        @apply h-screen w-screen flex flex-col gap-10 p-5;
     }
     .prevPosts{
         @apply border-5 border-double px-5 overflow-y-scroll bg-fuchsia-500/45 inset-20 inset-shadow-xs inset-shadow-black;

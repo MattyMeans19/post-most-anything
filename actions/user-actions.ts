@@ -13,7 +13,7 @@ export async function Login(formState: FormState, formData: FormData){
     let password = formData.get('password') as string;
 
     try{
-        const loginRequest = await pool.query('SELECT password FROM users WHERE username = $1', [userName])
+        const loginRequest = await pool.query('SELECT password FROM users WHERE username = $1', [userName]);
         let loginResponse = loginRequest.rows;
         
         if(password === loginResponse[0].password){
@@ -66,26 +66,26 @@ export async function CreateUser(formState: FormState, formData: FormData){
     const specialCharacters = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
     let validatePassword = specialCharacters.test(password);
 
-    if(!email?.includes("@") || validatePassword){
+    if(!email?.includes("@") || validatePassword === false){
         return {message : "Make sure email is valid and password contains at least one special character!"}
     }
 
+
     try{
-        const checkUser = await pool.query('SELECT * users WHERE username = $1', [username]);
-        const checkResponse = checkUser.rows;
+        const checkUser = await pool.query('SELECT * FROM users WHERE username = $1', [username]);
+        let checkResponse = checkUser.rows;
 
         if(checkResponse.length > 0){
             return {message: "User Already Exists!"}
+        }else{
+           await pool.query('INSERT INTO users (fname, lname, username, password, dob, email) VALUES ($1, $2, $3, $4, $5, $6)', [fname, lname, username, password, dob, email]);
+           await createSession(username);
+            redirect("/home");
         }
-        
-        await pool.query('INSERT INTO users (fname, lname, username, password, dob, email) VALUES ($1, $2, $3, $4, $5, $6)', [fname, lname, username, password, dob, email]);
-        await createSession(username);
-        redirect("/home");
     } catch(error){
        if (isRedirectError(error)) {
             throw error; // Re-throw the redirect error for Next.js to handle
-        }
-        return {message: "Something went wrong, please try again!"}; 
+        } 
     }
-    
+    return {message: "Something went wrong, please try again!"};
 }
