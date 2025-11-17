@@ -1,5 +1,8 @@
 import { GetPost } from "@/lib/data";
 import { notFound } from "next/navigation";
+import "./post.css"
+import { Suspense } from "react";
+import Loading from "@/components/loading";
 
 
 
@@ -12,14 +15,19 @@ export default async function PostDetails({params}: {params: {postSlug: number}}
         notFound();
     } else if(typeof currentPost != "string"){
         return(
-            <div>
-                <h1>{currentPost.title}</h1>
-                <h2>By: {currentPost.creator}</h2>
-                <p>{currentPost.postdate.toLocaleDateString()}</p>
-                <p>{currentPost.post}</p>
-                <h3>Upvotes: {currentPost.upvotes}</h3>
-                <h3>Replies: {currentPost.replies}</h3>
-            </div>
+            <Suspense fallback={<Loading />}>
+                <div className="post backdrop">
+                    <h1>{currentPost.title}</h1>
+                    <h2>By: {currentPost.creator}</h2>
+                    <h3>Posted on {currentPost.postdate.toLocaleDateString()}</h3>
+                    <p>{currentPost.post}</p>
+                    <div className="bottom">
+                        <h3>Upvotes: {currentPost.upvotes}</h3>
+                        <h3>Replies: {currentPost.replies}</h3>  
+                    </div>
+                </div>  
+            </Suspense>
+            
         )  
     }
     

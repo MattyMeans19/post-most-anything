@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+.post{
+    @apply flex flex-col place-items-center border-5 p-3 lg:p-10 h-screen lg:h-[84vh] max-w-screen rounded-3xl gap-5;
+}
+
+.post h1{
+    @apply  text-2xl lg:text-7xl bg-purple-700/35 border w-full text-center p-5 rounded-2xl;
+}
+
+.post h2{
+    @apply  lg:text-4xl bg-white/30 w-full text-center rounded-3xl p-5;
+}
+
+.post h3{
+    @apply lg:text-3xl;
+}
+
+.post p{
+    @apply text-2xl lg:text-4xl w-full grow border-5 border-double p-5 bg-white overflow-y-scroll;
+}
+
+.bottom{
+    @apply flex flex-nowrap gap-10;
+}

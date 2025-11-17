@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@media (min-width: 992){
+@media (min-width: 1025){
     .posts-page{
         @apply h-[84vh] flex flex-wrap p-5 overflow-clip;
     }
@@ -12,7 +12,7 @@
     }
 }
 
-@media (max-width: 991px){
+@media (max-width: 1024px){
     .posts-page{
         @apply h-screen flex flex-col p-5;
     }

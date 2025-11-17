@@ -40,7 +40,7 @@
 }
 
 .registration{
-  @apply grid grid-cols-4 gap-y-15 gap-x-5 mx-40 p-35 border-20 border-double rounded-2xl border-purple-700 bg-white;
+  @apply flex flex-col place-items-center lg:grid grid-cols-4 gap-y-15 gap-x-5 lg:mx-30 p-5 lg:p-25 border-20 border-double rounded-2xl border-purple-700 bg-white;
 }
 
 .registration input{
@@ -48,5 +48,5 @@
 }
 
 .registration label{
-  @apply text-2xl text-end underline w-full;
+  @apply text-2xl lg:text-end underline w-full;
 }

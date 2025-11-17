@@ -16,9 +16,9 @@ export default async function Display(array: PostData){
         <div className="max-h-[98vh] flex flex-col gap-5 justify-around p-5">
             {posts.map((post) => (
                 <Link href={`/posts/${post.postid}`} key={post.postid} className="postView grow">
-                    <h1 className="text-center text-4xl">{post.title}</h1>
-                    <h2 className="text-center text-2xl">Created by: {post.creator}</h2>
-                    <p className="text-3xl">{post.post}</p>
+                    <h1 className="text-center text-2xl lg:text-4xl">{post.title}</h1>
+                    <h2 className="text-center lg:text-2xl">Created by: {post.creator}</h2>
+                    <p className="lg:text-3xl">{post.post}</p>
                     <h2 className="place-self-end">Posted on: {post.postdate.toLocaleDateString()}</h2>
                 </Link>
                 

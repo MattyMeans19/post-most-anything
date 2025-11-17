@@ -1,5 +1,7 @@
 import pool from "./db";
 import { Post } from "@/lib/definitions";
+import { cookies } from "next/headers";
+import {decrypt} from "@/lib/session";
 
 export async function GetAllPosts(){
     try{
@@ -37,4 +39,12 @@ export async function GetUserPosts(userName: string){
         let message = error;
         return message as string;
     }
+}
+
+export async function GetCurrentUser(){
+        const cookie = (await cookies()).get('session')?.value;
+        let sessionInfo = await decrypt(cookie);
+        let currentUser = sessionInfo?.username;
+
+        return currentUser as string | undefined;
 }
