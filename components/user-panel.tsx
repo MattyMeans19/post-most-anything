@@ -1,5 +1,6 @@
 import { getUser } from "@/actions/user-actions"
 import { UserBasicInfo } from "@/lib/definitions";
+import Link from "next/link";
 
 
 export default async function UserPanel(){
@@ -15,7 +16,7 @@ export default async function UserPanel(){
                 <h1>{userData.username}</h1>
                 <p>A.K.A</p>
                 <h2>{userData.fname} {userData.lname}</h2>
-                <button className="bg-purple-400 w-full text-3xl py-2 border-3 rounded-full">Create New Post</button>
+                <Link className="bg-purple-400 w-full text-center text-3xl p-2 border-3 rounded-full" href="/posts/create-post">Create New Post</Link>
             </div>
 
             <div className="flex flex-col gap-10 bg-white rounded-4xl border-3 place-items-center p-15">

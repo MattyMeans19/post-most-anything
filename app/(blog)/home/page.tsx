@@ -5,8 +5,6 @@ import { GetUserPosts } from "@/lib/data";
 import "./home.css"
 import { cookies } from "next/headers";
 import {decrypt} from "@/lib/session";
-import Loading from "@/components/loading";
-import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "PMA- Home",
@@ -23,13 +21,13 @@ export default async function BlogHome(){
     return(
         <div className="home-container backdrop">
             <UserPanel/>
-            <div className="prevPosts">
-                <Suspense fallback={<Loading />}>
-                    <h1>Your Posts</h1>
-                    <Display data={userPosts}/> 
-                </Suspense>
-                
+            <div className="postDisplay">
+                <h1>Your Posts</h1>
+                <div className="prevPosts">
+                    <Display data={userPosts}/>  
+                </div>  
             </div>
+            
         </div>
     )
 }

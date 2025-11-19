@@ -3,8 +3,7 @@ import Display from "@/components/post-display";
 import Sidebar from "@/components/filter-sidebar";
 import { GetAllPosts } from "@/lib/data";
 import "./posts.css";
-import Loading from "@/components/loading";
-import { Suspense } from "react";
+
 
 export const metadata: Metadata = {
   title: "PMA- Posts",
@@ -21,12 +20,8 @@ export default async function Posts(){
       <div className="backdrop posts-page">
         <Sidebar />
         <div className="posts-array">
-          <Suspense fallback={<Loading />}>
-            <Display data={postsArray}/>
-          </Suspense>
-          
-        </div>
-        
+            <Display data={postsArray}/> 
+        </div> 
       </div>
     )
 }
