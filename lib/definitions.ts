@@ -21,10 +21,10 @@ export type Post ={
 }
 
 export type Comment ={
-    postId: number,
-    content: string,
+    id: number,
     creator: string,
-    date: Date
+    postid: number,
+    content: string
 }
 
 export type FormState =

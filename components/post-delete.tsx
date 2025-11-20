@@ -1,23 +1,16 @@
 'use client';
 import { DeletePost } from "@/actions/post-actions";
-import { revalidatePath } from "next/cache";
 
-export default function DeleteButton(){
+interface PostID {postId: number}
 
-    async function Delete(){
-    let request = await DeletePost(1);
-        
-    if(request?.message){
-        alert(request.message);
-    } else {
-        alert("Post Deleted!")
-        revalidatePath("/home");
-        revalidatePath("/posts");
+export default function DeleteButton(id: PostID){
+
+    function Deleted(post: number){
+        alert("Post Deleted!");
+        DeletePost(post)
     }
     
     return(
-        <button className="submitButton p-2 text-2xl mt-[-15]" onClick={() => (Delete)}>Delete</button>
+        <button className="submitButton p-2 text-2xl w-30" onClick={() => (Deleted(id.postId))}>Delete</button>
     )
-}
-
 }

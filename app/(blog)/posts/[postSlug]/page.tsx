@@ -21,11 +21,7 @@ export default async function PostDetails({params}: {params: {postSlug: number}}
                     <h2>By: {currentPost.creator}</h2>
                     <h3>Posted on {currentPost.postdate.toLocaleDateString()}</h3>
                     <p>{currentPost.post}</p>
-                    <div className="bottom">
-                        <h3>Upvotes: {currentPost.upvotes}</h3>
-                        <h3>Replies: {currentPost.replies}</h3>  
-                    </div>
-                </div>  
+                </div> 
             </Suspense>
             
         )  

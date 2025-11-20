@@ -13,13 +13,9 @@
 }
 
 .post h3{
-    @apply lg:text-3xl;
+    @apply lg:text-3xl w-full;
 }
 
 .post p{
     @apply text-2xl lg:text-4xl w-full grow border-5 border-double p-5 bg-white overflow-y-scroll;
-}
-
-.bottom{
-    @apply flex flex-nowrap gap-10;
 }

@@ -37,7 +37,7 @@
     "**/*.mts",
     ".next\\dev/types/**/*.ts",
     ".next\\dev/types/**/*.ts"
-, "components/loading.jsx"  ],
+, "components/loading.jsx", "components/filter-sidebar.jsx"  ],
   "exclude": [
     "node_modules"
   ]

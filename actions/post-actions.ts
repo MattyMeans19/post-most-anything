@@ -6,6 +6,8 @@ import { FormState } from "@/lib/definitions";
 import pool from "@/lib/db";
 import { redirect } from "next/navigation";
 import { isRedirectError } from "next/dist/client/components/redirect-error";
+import { revalidatePath } from "next/cache";
+
 
 
 export async function CreatePost(formState: FormState, formData: FormData){
@@ -31,6 +33,9 @@ export async function CreatePost(formState: FormState, formData: FormData){
 export async function DeletePost(postId: number){
     try{
         await pool.query('DELETE FROM posts WHERE postid = $1', [postId]);
+        revalidatePath("/home");
+        revalidatePath("/posts");
+        window.location.reload();
     } catch (error){
         return {message: "Error Deleting Post!"};
     }

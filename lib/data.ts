@@ -48,3 +48,11 @@ export async function GetCurrentUser(){
 
         return currentUser as string | undefined;
 }
+
+export async function GetSearch(searchSlug: string){
+    const searchParams = searchSlug.split("_");
+    let input = '%' + searchParams[0] + '%';
+    console.log(searchParams[1], searchParams[2], input);
+    const searchQuery = await pool.query('SELECT * FROM posts WHERE $1 LIKE $2 ORDER BY $3', [searchParams[2], input , searchParams[1]]);
+    console.log(searchQuery.rows);
+}
