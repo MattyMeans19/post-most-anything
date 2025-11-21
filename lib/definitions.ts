@@ -2,6 +2,7 @@ export type UserBasicInfo ={
   fname: string,
   lname: string,
   username: string,
+  verified: boolean
 }
 
 export interface UserInfo extends UserBasicInfo{

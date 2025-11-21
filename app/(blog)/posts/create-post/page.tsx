@@ -27,9 +27,9 @@ export default function NewPost(){
         <div className="h-screen post backdrop">
             <form className="flex flex-col p-2 gap-5 h-screen w-full" action={formAction}>
                 <input className="border-b bg-white/25 w-full text-7xl text-center rounded-2xl" 
-                maxLength={15} id="title" name="title" placeholder="Title" value={title}
+                maxLength={30} id="title" name="title" placeholder="Title" value={title}
                 onChange={() => (titleChange())} required></input>
-                <span className="text-end">{titleCount}/15</span>
+                <span className="text-end">{titleCount}/30</span>
                 <textarea className="border grow p-5 bg-white/65 rounded-2xl text-3xl" 
                 maxLength={1000} id="content" name="content" placeholder="Content..." value={content}
                 onChange={() => (contentChange())} required></textarea>
