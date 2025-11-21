@@ -51,8 +51,17 @@ export async function GetCurrentUser(){
 
 export async function GetSearch(searchSlug: string){
     const searchParams = searchSlug.split("_");
-    let input = '%' + searchParams[0] + '%';
-    console.log(searchParams[1], searchParams[2], input);
-    const searchQuery = await pool.query('SELECT * FROM posts WHERE $1 LIKE $2 ORDER BY $3', [searchParams[2], input , searchParams[1]]);
-    console.log(searchQuery.rows);
+    let input = `%${searchParams[0]}%`;
+    let order = "postdate " + searchParams[1];
+    
+    console.log(searchParams[2], input, order);
+    try{
+        const searchQuery = await pool.query(`SELECT * FROM posts WHERE ${searchParams[2]} ILIKE $1 ORDER BY ${order}`, [input]);
+        console.log(searchQuery.rows);
+        return searchQuery.rows as Post[]
+    } catch(error){
+        let message = "Error fetching posts..."
+        return message;
+    }
+    
 }
